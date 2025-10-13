@@ -190,68 +190,160 @@
           <div class="usage-grid">
             <div class="usage-card">
               <span class="usage-icon">🚀</span>
-              <h3>Starting & Stopping</h3>
+              <h3>Basic Uses</h3>
               <p>Control your desktop environment with simple commands</p>
               <ul class="usage-list">
-                <li>Start desktop with <code>start-desktop</code></li>
-                <li>Stop desktop with <code>stop-desktop</code></li>
-                <li>Restart with <code>restart-desktop</code></li>
-                <li>Check status with <code>desktop-status</code></li>
+                <li>Start desktop with termux-x11 <code>tx11start</code></li>
+                <li>Stop desktop with termux-x11 <code>tx11stop</code></li>
+                <li>Start desktop with vnc <code>vncstart</code></li>
+                <li>Stop desktop with vnc <code>vncstop</code></li>
               </ul>
             </div>
             <div class="usage-card">
               <span class="usage-icon">🎨</span>
               <h3>Customization</h3>
-              <p>Personalize your desktop to match your style</p>
+              <p>Personalize your desktop with available custom style</p>
               <ul class="usage-list">
-                <li>Change themes in Settings → Appearance</li>
-                <li>Install icon packs from the store</li>
-                <li>Configure wallpapers and backgrounds</li>
-                <li>Adjust window manager settings</li>
+                <li>
+                  During the setup it will ask you to chose diffreent styles
+                </li>
+                <li>
+                  To change style run
+                  <code>setup-termux-desktop --change style</code>
+                </li>
+                <li>
+                  Termux Desktop comes with a sets of wallpapers wich is located
+                  inside <code>$PREFIX/share/backgrounds</code>
+                </li>
               </ul>
             </div>
             <div class="usage-card">
               <span class="usage-icon">📦</span>
-              <h3>Package Management</h3>
-              <p>Install and manage applications effortlessly</p>
+              <h3>Distro Container</h3>
+              <p>
+                Effortlessly integrat proot-distro or chroot-distro to use as a
+                container system
+                <br />
+                <code>Ex:- debian (i will use debian as a example here)</code>
+              </p>
               <ul class="usage-list">
-                <li>Use <code>pkg install [package]</code> to install</li>
-                <li>Search packages with <code>pkg search</code></li>
-                <li>Update all with <code>pkg upgrade</code></li>
-                <li>Remove with <code>pkg uninstall</code></li>
+                <li>To login into the distro run <code>debian</code></li>
+
+                <li>
+                  To login into the distro as root run
+                  <code>debian --root</code>
+                </li>
+                <li>
+                  Install a program <code>debian install libreoffice</code>
+                </li>
+                <li>Run the program using <code>pdrun libreoffice</code></li>
+                <li>Update the distro <code>debian update</code></li>
+                <li>Remove a progarm <code>debian remove libreoffice</code></li>
+                <li>
+                  Add a manually installed program, use the tool
+                  <code>add2menu</code>
+                </li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <span class="usage-icon">🦾</span>
+              <h3>Hardware Acceleration</h3>
+              <p>
+                It will optionally setup the desktop with Hardware Acceleration
+                and will do the configuration that are needed to get Hardware
+                Acceleration working
+              </p>
+              <ul class="usage-list">
+                <li>
+                  It supports all the avaialbe derives that are avaialbe in
+                  termux
+                </li>
+                <li>
+                  It supports
+                  <code
+                    >vulkan-wrapper-android, vulkan-wrapper-android leegao's
+                    fork, Turnip , virgl...</code
+                  >
+                </li>
+                <li>
+                  If you setup with Hardware Acceleration then just type the
+                  appropiate launch command it will use Hardware Acceleration
+                </li>
+                <li>
+                  To launch without Hardware Acceleration run with
+                  <code>--nogpu</code> flag
+                </li>
+                <li>
+                  To change Hardware Acceleration run
+                  <code>setup-termux-desktop --change hw</code>
+                </li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <span class="usage-icon">💻</span>
+              <h3>Supported De / WM</h3>
+              <p>
+                list of all the desktop environment and window manager it
+                supports are
+              </p>
+              <ul class="usage-list">
+                <li>
+                  Desktop
+                  <code>Xfce</code>
+                  <br />
+                  <code>Lxqt</code>
+                  <br />
+                  <code>MATE</code>
+                  <br />
+                  <code>GNOME</code>
+                  <br />
+                  <code>Cinnamon</code>
+                </li>
+                <li>
+                  Window Manager
+                  <code>Openbox</code>
+                  <br />
+                  <code>i3</code>
+                  <br />
+                  <code>dwm</code>
+                  <br />
+                  <code>bspwm</code>
+                  <br />
+                  <code>Awesome</code>
+                  <br />
+                  <code>Fluxbox</code>
+                  <br />
+                  <code>IceWM</code>
+                </li>
               </ul>
             </div>
             <div class="usage-card">
               <span class="usage-icon">🔧</span>
               <h3>Configuration</h3>
-              <p>Fine-tune settings for optimal performance</p>
+              <p>Default configuration you get with Termux Desktop</p>
               <ul class="usage-list">
-                <li>Edit config files in ~/.config</li>
-                <li>Adjust display resolution and DPI</li>
-                <li>Configure keyboard shortcuts</li>
-                <li>Set up auto-start applications</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <span class="usage-icon">💻</span>
-              <h3>Development Tools</h3>
-              <p>Set up your development environment</p>
-              <ul class="usage-list">
-                <li>Install VS Code, Vim, or Emacs</li>
-                <li>Set up Python, Node.js, or Java</li>
-                <li>Configure Git and SSH keys</li>
-                <li>Run local web servers</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <span class="usage-icon">🔐</span>
-              <h3>Security & Privacy</h3>
-              <p>Keep your system safe and secure</p>
-              <ul class="usage-list">
-                <li>Enable firewall protection</li>
-                <li>Use encrypted storage for sensitive data</li>
-                <li>Keep packages updated regularly</li>
-                <li>Review app permissions carefully</li>
+                <li>
+                  All the Default config lives inside
+                  <code>~/.config, ~/.local</code>
+                </li>
+                <li>
+                  You get custom shell configuration, for zsh with zinit and for
+                  bash with ble.sh
+                  <br />
+                  lives inside : <code>~/.zshrc</code> and
+                  <code>~/.bashrc</code>
+                </li>
+                <li>All shell alias lives inside <code>~/.aliases</code></li>
+                <li>
+                  All the custom shell programs that are availabe are
+                  <br />
+                  <code>termux-color</code> to change termux terminal colors
+                  <br />
+                  <code>termux-fastest-repo</code> to run a speedtest and select
+                  the fastest repo
+                  <br />
+                  <code>termux-nf</code> to install various nerd font
+                </li>
               </ul>
             </div>
           </div>
