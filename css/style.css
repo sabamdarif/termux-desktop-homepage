@@ -564,6 +564,36 @@ h1 {
   line-height: 1.8;
 }
 
+.btn-install-div {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-install {
+  height: 70px;
+  width: 140px;
+  font-size: 17px;
+  color: var(--text);
+  font-weight: bolder;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 14px;
+  border: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-install:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+}
+
 .code-block {
   background: var(--bg-darker);
   border: 1px solid rgba(99, 102, 241, 0.2);
@@ -847,6 +877,16 @@ footer {
 
   .step-card {
     padding: 1.5rem;
+  }
+
+  .btn-install-div {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-install {
+    width: 100%;
+    max-width: 200px;
   }
 
   .installation,
