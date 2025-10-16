@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Custom Content - Termux Desktop</title>
+    <title>Distro Containers - Termux Desktop</title>
     <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/wiki.css" rel="stylesheet" />
   </head>
   <body>
     <div class="bg-animation">
@@ -22,7 +23,6 @@
           <li><a href="index.html#installation">Installation</a></li>
           <li><a href="index.html#usage">Usage</a></li>
           <li><a href="index.html#wiki">Wiki</a></li>
-          <li><a href="content.html">More</a></li>
         </ul>
         <div class="menu-toggle" id="menuToggle">
           <span></span>
@@ -33,22 +33,217 @@
     </header>
 
     <main>
-      <section class="blank-page">
-        <div class="blank-page-container">
-          <div class="blank-content-area">
-            <div class="blank-placeholder">
-              <div class="blank-icon">📝</div>
-              <h1>Custom Content Page</h1>
-              <p>
-                This is a blank page ready for your custom content. You can add
-                anything here - announcements, blog posts, documentation,
-                galleries, or any other content you need.
-              </p>
-              <div class="blank-hint">
+      <section class="content-page">
+        <div class="content-container">
+          <div class="page-header">
+            <h1>Expanding Termux with Distro Containers</h1>
+            <p>
+              Extend Termux's capabilities by integrating applications from
+              other Linux distributions using Distro Containers. No root
+              required, seamlessly integrated.
+            </p>
+            <a
+              href="https://youtu.be/KiUTyGZ2grE?si=9L8pg00Vf--64Tsp"
+              class="video-badge"
+              target="_blank"
+            >
+              🎥 Watch Video Guide
+            </a>
+          </div>
+
+          <div class="content-section">
+            <h2>📦 Overview</h2>
+            <p>
+              Termux natively supports a limited selection of applications.
+              However, with this script, you can extend Termux's capabilities by
+              integrating applications from other Linux distributions using a
+              <strong>Distro Container</strong>. The best part? There's no need
+              to log in to the Proot/chroot-distro to access these apps; they
+              seamlessly integrate into Termux, appearing in its desktop app
+              menu and launching directly from the Termux terminal.
+            </p>
+          </div>
+
+          <div class="content-section">
+            <h2>✨ Key Features</h2>
+            <ul class="feature-list">
+              <li>
+                <strong>Expand Termux's App Ecosystem:</strong> Install
+                additional applications from various Linux distributions into
+                Termux.
+              </li>
+              <li>
+                <strong>Integrated Access:</strong> Run installed apps directly
+                in Termux without needing to log in to the Proot distro.
+              </li>
+              <li>
+                <strong>Desktop Menu Integration:</strong> Applications can be
+                added to the Termux desktop app menu for easy access.
+              </li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h2>🚀 How to Use the Script</h2>
+
+            <div class="note-box">
+              <strong>NOTE:</strong> For chroot-distro, flash this module first:
+              <a
+                href="https://github.com/sabamdarif/chroot-distro"
+                target="_blank"
+                style="color: var(--accent)"
+                >sabamdarif/chroot-distro</a
+              >
+            </div>
+
+            <ol class="steps-list">
+              <li>
+                <strong>Run the Installer Script</strong>
                 <p>
-                  <strong>Tip:</strong> Edit this HTML file to add your own
-                  content while maintaining the same beautiful design!
+                  When prompted about setting up a Distro Container, type
+                  <code>y</code> to continue.
                 </p>
+              </li>
+              <li>
+                <strong>Select a Distribution</strong>
+                <p>
+                  Choose a distribution from the list provided by typing the
+                  corresponding number. The script will handle the installation
+                  and configuration.
+                </p>
+              </li>
+              <li>
+                <strong>Set Up a User Account</strong>
+                <p>
+                  It is recommended to create a user account during setup. Once
+                  complete, you're ready to use the container.
+                </p>
+              </li>
+            </ol>
+          </div>
+
+          <div class="content-section">
+            <h2>💻 Running Installed Apps in Termux</h2>
+            <p>
+              If you've installed an app in your distro (e.g., Debian) and want
+              to run it directly from Termux, use the following command:
+            </p>
+            <div class="code-snippet">
+              <code>pdrun &lt;package-name&gt;</code>
+            </div>
+            <p><strong>Example:</strong> To run LibreOffice, type:</p>
+            <div class="code-snippet">
+              <code>pdrun libreoffice</code>
+            </div>
+            <div class="image-container">
+              <img
+                src="https://raw.githubusercontent.com/sabamdarif/termux-desktop/setup-files/images/apps/container-pdrun-libreoffice.png"
+                alt="Running LibreOffice with pdrun"
+              />
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>📋 Adding Apps to the Desktop Menu</h2>
+            <p>
+              You can add installed applications to the Termux desktop menu for
+              quick access in two ways:
+            </p>
+
+            <h4>1. Using the Terminal Command</h4>
+            <p>
+              Type <code>add2menu</code> in the terminal, and select the app you
+              want to add.
+            </p>
+
+            <h4>2. Using the "Add to Menu" App</h4>
+            <p>
+              Open the <code>Add to Menu</code> app from Termux, and choose the
+              application you want to add.
+            </p>
+
+            <p>Once added, the app will appear in the Termux desktop menu.</p>
+
+            <div class="image-container">
+              <img
+                src="https://raw.githubusercontent.com/sabamdarif/termux-desktop/setup-files/images/add2menu-icon.png"
+                alt="Add to Menu Icon"
+              />
+            </div>
+            <div class="image-container">
+              <img
+                src="https://raw.githubusercontent.com/sabamdarif/termux-desktop/setup-files/images/add2menu-option.png"
+                alt="Add to Menu Options"
+              />
+            </div>
+            <div class="image-container">
+              <img
+                src="https://raw.githubusercontent.com/sabamdarif/termux-desktop/setup-files/images/add2menu-main-window.png"
+                alt="Add to Menu Main Window"
+              />
+            </div>
+            <div class="image-container">
+              <img
+                src="https://raw.githubusercontent.com/sabamdarif/termux-desktop/setup-files/images/pd-appps.png"
+                alt="Desktop Apps"
+              />
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>⚡ Installing and Adding Apps in One Step</h2>
+            <p>
+              For a faster setup, use the following command to install an app
+              and add it to the Termux menu simultaneously:
+            </p>
+            <div class="code-snippet">
+              <code>&lt;Distro-Name&gt; install &lt;package-name&gt;</code>
+            </div>
+            <p>
+              <strong>Example:</strong> To install and add LibreOffice in
+              Debian, type:
+            </p>
+            <div class="code-snippet">
+              <code>debian install libreoffice</code>
+            </div>
+            <div class="image-container">
+              <img
+                src="https://raw.githubusercontent.com/sabamdarif/termux-desktop/setup-files/images/apps/container-libreoffice-2.png"
+                alt="Installing LibreOffice"
+              />
+            </div>
+            <p>
+              If this method doesn't work for any reason, you can manually add
+              the app to the menu using the steps outlined above.
+            </p>
+          </div>
+
+          <div class="content-section">
+            <h2>🔐 Logging into the Installed Distro</h2>
+
+            <div class="command-grid">
+              <div class="command-card">
+                <h5>Log in as Regular User</h5>
+                <p>Type the name of the installed distribution:</p>
+                <code>debian</code>
+              </div>
+
+              <div class="command-card">
+                <h5>Log in as Root</h5>
+                <p>Use the --root flag:</p>
+                <code>debian --root</code>
+              </div>
+
+              <div class="command-card">
+                <h5>Remove the Distro</h5>
+                <p>Uninstall and remove all files:</p>
+                <code>debian --remove</code>
+              </div>
+
+              <div class="command-card">
+                <h5>Show Help</h5>
+                <p>Display help information:</p>
+                <code>debian --help</code>
               </div>
             </div>
           </div>
@@ -64,16 +259,15 @@
           <a href="index.html#installation">Installation</a>
           <a href="index.html#usage">Usage</a>
           <a href="index.html#wiki">Wiki</a>
-          <a href="#">GitHub</a>
-          <a href="#">Telegram</a>
-          <a href="#">Discord</a>
+          <a href="https://github.com/sabamdarif/termux-desktop">GitHub</a>
+          <a href="https://t.me/hello_android_0">Telegram</a>
         </div>
         <p class="footer-text">
-          © 2025 Termux Desktop. Open source project licensed under MIT.
+          © 2025 Termux Desktop. Open source project licensed under GPL-V3.
         </p>
       </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
   </body>
 </html>

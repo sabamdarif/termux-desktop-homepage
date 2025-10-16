@@ -15,6 +15,7 @@
   --bg-darker: #020617;
   --text: #f1f5f9;
   --text-muted: #94a3b8;
+  --text-3rd: #8be9fd;
 }
 
 body {
@@ -605,7 +606,7 @@ h1 {
 }
 
 .code-block code {
-  color: #8be9fd;
+  color: var(--text-3rd);
   font-family: "Courier New", monospace;
   font-size: 0.95rem;
 }
