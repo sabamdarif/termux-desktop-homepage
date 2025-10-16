@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hardware Acceleration in Termux - Termux Desktop</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/wiki.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="bg-animation">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+
+    <header>
+      <nav>
+        <div class="logo">TERMUX DESKTOP</div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#features">Features</a></li>
+          <li><a href="index.html#installation">Installation</a></li>
+          <li><a href="index.html#usage">Usage</a></li>
+          <li><a href="index.html#wiki">Wiki</a></li>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="content-page">
+        <div class="content-container">
+          <div class="page-header">
+            <h1>🦾 Hardware Acceleration in Termux</h1>
+            <p>
+              Learn how to enable, configure, and test hardware acceleration in
+              Termux Desktop for better graphics performance. This guide
+              includes installation, usage, driver configuration, and
+              performance benchmarks.
+            </p>
+          </div>
+
+          <div class="content-section">
+            <div class="note-box">
+              <strong>IMPORTANT:</strong> Hardware acceleration in Termux is
+              still experimental, so it may or may not work on your device.
+            </div>
+
+            <h2>⚙️ Installation</h2>
+            <ul class="feature-list">
+              <li>
+                Run the Installer Script and choose your preferred hardware
+                acceleration method during installation.
+              </li>
+              <li>
+                If you use a distro container, select the hardware acceleration
+                method for that distro as well.
+              </li>
+              <li>
+                For Adreno GPUs, Turnip will be selected automatically on
+                Ubuntu/Debian.
+              </li>
+            </ul>
+
+            <div class="note-box">
+              <strong>TIP:</strong>
+              Use
+              <a
+                href="https://play.google.com/store/apps/details?id=com.cpuid.cpu_z&pcampaignid=web_share"
+                target="_blank"
+                >CPU-Z</a
+              >
+              to identify your GPU. Research whether <code>virpipe</code>,
+              <code>zink</code>, or <code>icd-wrapper</code> works best; for
+              most GPUs, <code>icd-wrapper</code> (Vulkan) works fine.
+            </div>
+
+            <div class="image-container">
+              <img
+                src="https://raw.githubusercontent.com/sabamdarif/termux-desktop/setup-files/images/cpu-z.png"
+                alt="CPU-Z Screenshot"
+              />
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>🚀 Using Hardware Acceleration in Termux</h2>
+            <ul class="feature-list">
+              <li>
+                Start Termux Desktop via
+                <strong>Termux:X11</strong> (recommended) or
+                <strong>VNC</strong>.
+              </li>
+              <li>
+                It should just work if your selected driver supports your GPU.
+              </li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h2>💻 Using Hardware Acceleration in Proot Distro</h2>
+            <h3>Method 1: Terminal Commands (<code>pdrun</code>)</h3>
+            <div class="note-box">
+              <strong>NOTE:</strong> Always run <code>pdrun</code> from Termux’s
+              shell, never from inside a distro.
+            </div>
+            <ol class="steps-list">
+              <li>Launch Termux Desktop.</li>
+              <li>
+                Run programs with GPU acceleration:
+                <div class="code-snippet"><code>pdrun program</code></div>
+              </li>
+              <li>
+                Run programs without GPU acceleration:
+                <div class="code-snippet">
+                  <code>pdrun --nogpu program</code>
+                </div>
+              </li>
+            </ol>
+
+            <div class="image-container">
+              <img
+                src="https://raw.githubusercontent.com/sabamdarif/termux-desktop/setup-files/images/pdrun-glmark2.png"
+                alt="GLMark2 GPU Test"
+              />
+            </div>
+
+            <h3>Method 2: Termux Menu</h3>
+            <ol class="steps-list">
+              <li>Add the desired program to the Termux menu.</li>
+              <li>Launch it directly from the Termux menu.</li>
+            </ol>
+
+            <div class="note-box">
+              <strong>NOTE:</strong> Learn how to add programs from proot-distro
+              to Termux here:
+              <a
+                href="/docs/proot-container.md#adding-apps-to-the-termux-desktop-app-menu"
+                >Guide Link</a
+              >.
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>🔧 Changing Hardware Acceleration Drivers</h2>
+            <h3>Manual Configuration</h3>
+            <ol class="steps-list">
+              <li>
+                Install required packages:
+                <div class="code-snippet">
+                  <code
+                    >pkg install mesa virglrenderer vulkan-loader-generic
+                    angle-android virglrenderer-android</code
+                  >
+                </div>
+              </li>
+              <li>
+                Edit files in <code>$PREFIX/bin</code>:
+                <ul class="feature-list">
+                  <li><code>vncstart</code></li>
+                  <li><code>tx11start</code></li>
+                  <li><code>pdrun</code></li>
+                </ul>
+              </li>
+              <li>
+                Modify the environment export and driver setup lines
+                accordingly:
+                <div class="code-snippet">
+                  <code>
+                    export MESA_NO_ERROR=1 MESA_GL_VERSION_OVERRIDE=4.1COMPAT
+                    MESA_GLES_VERSION_OVERRIDE=3.2
+                    MESA_GLSL_VERSION_OVERRIDE=410 LIBGL_DRI3_DISABLE=1
+                    EPOXY_USE_ANGLE=1
+                    LD_LIBRARY_PATH=/data/data/com.termux/files/usr/opt/angle-android/vulkan
+                    virgl_test_server --use-egl-surfaceless --use-gles & sleep 1
+                    XDG_RUNTIME_DIR=${TMPDIR} termux-x11 :0 & sleep 1 am start
+                    --user 0 -n com.termux.x11/com.termux.x11.MainActivity >
+                    /dev/null 2>&1 & sleep 1 env DISPLAY=:0
+                    XDG_CONFIG_DIRS=/data/data/com.termux/files/usr/etc/xdg
+                    VK_ICD_FILENAMES=/data/data/com.termux/files/usr/share/vulkan/icd.d/wrapper_icd.aarch64.json
+                    MESA_VK_WSI_PRESENT_MODE=mailbox MESA_VK_WSI_DEBUG=blit
+                    MESA_SHADER_CACHE=512MB MESA_SHADER_CACHE_DISABLE=false
+                    vblank_mode=0 GALLIUM_DRIVER=virpipe dbus-launch
+                    --exit-with-session xfce4-session > /dev/null 2>&1 &
+                  </code>
+                </div>
+              </li>
+            </ol>
+            <p>
+              Adjust <code>export</code>, <code>virgl_test_server</code>, and
+              <code>GALLIUM_DRIVER</code> values according to
+              <a href="/enable-hw-acceleration#L96">these definitions</a>.
+            </p>
+
+            <h4>File <code>pdrun</code>:</h4>
+            <p>
+              Change
+              <code
+                >selected_pd_hw_method="GALLIUM_DRIVER=virpipe
+                MESA_GL_VERSION_OVERRIDE=4.0"</code
+              >
+              to match the new <code>hw_method</code> value.
+            </p>
+
+            <h3>Automatic Configuration</h3>
+            <p>To switch drivers automatically, run:</p>
+            <div class="code-snippet">
+              <code>setup-termux-desktop --change hw</code>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>📈 Performance Results</h2>
+
+            <h3>Adreno with mesa-vulkan-icd-wrapper and Turnip</h3>
+            <div class="image-container">
+              <img
+                src="https://raw.githubusercontent.com/sabamdarif/termux-desktop/setup-files/images/exp-hwa-adreno.png"
+                alt="Adreno Performance"
+              />
+            </div>
+
+            <h3>Mali with mesa-vulkan-icd-wrapper</h3>
+            <div class="image-container">
+              <img
+                src="https://raw.githubusercontent.com/sabamdarif/termux-desktop/setup-files/images/exp-hwa-mali.png"
+                alt="Mali Performance"
+              />
+            </div>
+
+            <div class="note-box">
+              <strong>Test Environment:</strong>
+              Conducted by
+              <a href="https://github.com/LinuxDroidMaster" target="_blank"
+                >LinuxDroidMaster</a
+              ><br />
+              Device: Lenovo Legion Y700 (Snapdragon 870, Adreno 650)<br />
+              Distro: Debian in Proot with XFCE4 Desktop<br />
+              Benchmark Tool: GLMark2
+            </div>
+
+            <h3>GLMark2 Scores (Proot Distro)</h3>
+            <table>
+              <tr>
+                <th>Run</th>
+                <th>LLVMPIPE</th>
+                <th>VIRGL</th>
+                <th>VIRGL ZINK</th>
+                <th>TURNIP</th>
+                <th>ZINK</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>93</td>
+                <td>70</td>
+                <td>66</td>
+                <td>198</td>
+                <td>Error</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>93</td>
+                <td>77</td>
+                <td>66</td>
+                <td>198</td>
+                <td>Error</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>72</td>
+                <td>70</td>
+                <td>71</td>
+                <td>198</td>
+                <td>Error</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>94</td>
+                <td>76</td>
+                <td>66</td>
+                <td>197</td>
+                <td>Error</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>93</td>
+                <td>75</td>
+                <td>67</td>
+                <td>198</td>
+                <td>Error</td>
+              </tr>
+            </table>
+
+            <h4>Commands Used</h4>
+            <table>
+              <tr>
+                <th>Driver</th>
+                <th>Command</th>
+              </tr>
+              <tr>
+                <td>LLVMPIPE</td>
+                <td><code>glmark2</code></td>
+              </tr>
+              <tr>
+                <td>VIRGL</td>
+                <td>
+                  <code
+                    >GALLIUM_DRIVER=virpipe MESA_GL_VERSION_OVERRIDE=4.0
+                    glmark2</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>VIRGL ZINK</td>
+                <td>
+                  <code
+                    >GALLIUM_DRIVER=virpipe MESA_GL_VERSION_OVERRIDE=4.0
+                    glmark2</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>TURNIP</td>
+                <td>
+                  <code
+                    >MESA_LOADER_DRIVER_OVERRIDE=zink TU_DEBUG=noconform
+                    glmark2</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>ZINK</td>
+                <td>
+                  <code
+                    >GALLIUM_DRIVER=zink MESA_GL_VERSION_OVERRIDE=4.0
+                    glmark2</code
+                  >
+                </td>
+              </tr>
+            </table>
+
+            <h3>GLMark2 Scores (Termux)</h3>
+            <table>
+              <tr>
+                <th>Run</th>
+                <th>LLVMPIPE</th>
+                <th>VIRGL</th>
+                <th>VIRGL ZINK</th>
+                <th>ZINK</th>
+                <th>TURNIP</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>69</td>
+                <td>Error</td>
+                <td>92</td>
+                <td>121</td>
+                <td>N/A</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>70</td>
+                <td>Error</td>
+                <td>92</td>
+                <td>122</td>
+                <td>N/A</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>69</td>
+                <td>Error</td>
+                <td>93</td>
+                <td>121</td>
+                <td>N/A</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>69</td>
+                <td>Error</td>
+                <td>93</td>
+                <td>124</td>
+                <td>N/A</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>69</td>
+                <td>Error</td>
+                <td>93</td>
+                <td>123</td>
+                <td>N/A</td>
+              </tr>
+            </table>
+
+            <h3>Firefox Aquarium WebGL Benchmark</h3>
+            <p><strong>Proot Distro Results (Firefox-ESR):</strong></p>
+            <table>
+              <tr>
+                <th>LLVMPIPE</th>
+                <th>VIRGL</th>
+                <th>VIRGL ZINK</th>
+                <th>TURNIP</th>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>20</td>
+                <td>17</td>
+                <td>Web page crash</td>
+              </tr>
+            </table>
+
+            <p><strong>Termux Results (Firefox-ESR):</strong></p>
+            <table>
+              <tr>
+                <th>LLVMPIPE</th>
+                <th>VIRGL</th>
+                <th>VIRGL ZINK</th>
+                <th>ZINK</th>
+                <th>TURNIP</th>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Error</td>
+                <td>24</td>
+                <td>40</td>
+                <td>N/A</td>
+              </tr>
+            </table>
+
+            <div class="image-container">
+              <img
+                src="https://raw.githubusercontent.com/sabamdarif/termux-desktop/setup-files/images/webglaquarium.png"
+                alt="Firefox WebGL Aquarium"
+              />
+            </div>
+
+            <h3>🕹️ Additional Testing</h3>
+            <p><strong>SuperTuxKart:</strong> Benchmarked over 30 seconds.</p>
+            <div class="image-container">
+              <img
+                src="https://raw.githubusercontent.com/sabamdarif/termux-desktop/setup-files/images/supertuxkart_comparison.png"
+                alt="SuperTuxKart Comparison"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-logo">TERMUX DESKTOP</div>
+        <div class="footer-links">
+          <a href="index.html#features">Features</a>
+          <a href="index.html#installation">Installation</a>
+          <a href="index.html#usage">Usage</a>
+          <a href="index.html#wiki">Wiki</a>
+          <a href="https://github.com/sabamdarif/termux-desktop">GitHub</a>
+          <a href="https://t.me/hello_android_0">Telegram</a>
+        </div>
+        <p class="footer-text">
+          © 2025 Termux Desktop. Open source project licensed under GPL-V3.
+        </p>
+      </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+  </body>
+</html>
