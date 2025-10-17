@@ -28,7 +28,6 @@ body {
 
 /* ========== SHARED UTILITIES ========== */
 
-/* Gradient text - used by .logo, h1, .footer-logo, .page-header h1 */
 .logo,
 h1,
 .footer-logo,
@@ -284,7 +283,6 @@ h1 {
   flex-wrap: wrap;
 }
 
-/* Shared button styles */
 .btn {
   padding: 1rem 2.5rem;
   border-radius: 50px;
@@ -323,7 +321,6 @@ h1 {
 
 /* ========== SHARED SECTION STYLES ========== */
 
-/* Consolidated section padding for .features, .installation, .usage, .wiki */
 .features,
 .installation,
 .usage,
@@ -809,10 +806,6 @@ footer {
   font-size: 0.9rem;
 }
 
-/* ========================================== */
-/* RESPONSIVE - CONSOLIDATED MEDIA QUERIES   */
-/* ========================================== */
-
 @media (max-width: 768px) {
   .nav-links {
     position: fixed;
@@ -877,7 +870,6 @@ footer {
     max-width: 200px;
   }
 
-  /* Consolidated section padding */
   .installation,
   .usage,
   .wiki {
@@ -1116,17 +1108,12 @@ footer {
   font-size: 0.9rem;
 }
 
-/* ========== TABLE WRAPPER ========== */
-
 .table-wrapper {
   overflow-x: auto;
   margin: 1.5rem 0;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-/* ========== CONSOLIDATED TABLE STYLES ========== */
-/* Shared by .benchmark-table and .command-table */
 
 .benchmark-table,
 .command-table {
@@ -1244,7 +1231,6 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  /* Consolidated table styles */
   .benchmark-table th,
   .benchmark-table td,
   .command-table th,
