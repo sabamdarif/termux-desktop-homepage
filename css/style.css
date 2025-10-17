@@ -26,7 +26,42 @@ body {
   line-height: 1.6;
 }
 
-/* Animated Background */
+/* ========== SHARED UTILITIES ========== */
+
+/* Gradient text - used by .logo, h1, .footer-logo, .page-header h1 */
+.logo,
+h1,
+.footer-logo,
+.page-header h1 {
+  background: linear-gradient(
+    135deg,
+    var(--text),
+    var(--primary),
+    var(--accent)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Fade in animation - shared by .hero-content, .content-section */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ========== ANIMATED BACKGROUND ========== */
+
 .bg-animation {
   position: fixed;
   top: 0;
@@ -86,11 +121,8 @@ body {
   }
 }
 
-a {
-  text-decoration: none;
-}
+/* ========== HEADER ========== */
 
-/* Header */
 header {
   position: fixed;
   top: 0;
@@ -125,10 +157,6 @@ nav {
 .logo {
   font-size: 1.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   animation: glow 2s ease-in-out infinite;
 }
 
@@ -190,7 +218,8 @@ nav {
   transition: all 0.3s;
 }
 
-/* Hero Section */
+/* ========== HERO SECTION ========== */
+
 .hero {
   position: relative;
   min-height: 100vh;
@@ -207,17 +236,6 @@ nav {
   z-index: 1;
   max-width: 900px;
   animation: fadeInUp 1s ease-out;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .hero-tag {
@@ -248,15 +266,6 @@ h1 {
   font-weight: 800;
   margin-bottom: 1.5rem;
   line-height: 1.1;
-  background: linear-gradient(
-    135deg,
-    var(--text),
-    var(--primary),
-    var(--accent)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .hero p {
@@ -275,6 +284,7 @@ h1 {
   flex-wrap: wrap;
 }
 
+/* Shared button styles */
 .btn {
   padding: 1rem 2.5rem;
   border-radius: 50px;
@@ -311,16 +321,37 @@ h1 {
   border-color: var(--primary);
 }
 
-/* Features Section */
-.features {
+/* ========== SHARED SECTION STYLES ========== */
+
+/* Consolidated section padding for .features, .installation, .usage, .wiki */
+.features,
+.installation,
+.usage,
+.wiki {
   position: relative;
   padding: 6rem 2rem;
   z-index: 1;
 }
 
-.features-container {
+.installation {
+  background: linear-gradient(180deg, var(--bg-dark), var(--bg-darker));
+}
+
+.wiki {
+  background: linear-gradient(180deg, var(--bg-dark), var(--bg-darker));
+}
+
+/* Shared container styles */
+.features-container,
+.installation-container,
+.usage-container,
+.wiki-container {
   max-width: 1400px;
   margin: 0 auto;
+}
+
+.installation-container {
+  max-width: 1200px;
 }
 
 .section-title {
@@ -338,6 +369,8 @@ h1 {
   color: var(--text-muted);
   font-size: 1.1rem;
 }
+
+/* ========== FEATURES SECTION ========== */
 
 .features-grid {
   display: grid;
@@ -398,8 +431,6 @@ h1 {
   color: var(--primary);
   text-transform: uppercase;
   margin-bottom: 1rem;
-  /* margin-left: auto; */
-  /* margin-right: auto; */
   text-align: center;
 }
 
@@ -429,82 +460,7 @@ h1 {
   gap: 1rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .nav-links {
-    position: fixed;
-    top: 70px;
-    right: -100%;
-    width: 70%;
-    height: calc(100vh - 70px);
-    background: rgba(15, 23, 42, 0.98);
-    backdrop-filter: blur(10px);
-    flex-direction: column;
-    padding: 2rem;
-    transition: right 0.4s;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .nav-links.active {
-    right: 0;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  .menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 8px);
-  }
-
-  .menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-  }
-
-  .cta-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .btn {
-    width: 100%;
-  }
-
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  nav {
-    padding: 1rem;
-  }
-
-  .hero {
-    padding: 6rem 1rem 2rem;
-  }
-
-  .features {
-    padding: 4rem 1rem;
-  }
-}
-
-/* Installation Section */
-.installation {
-  position: relative;
-  padding: 6rem 2rem;
-  z-index: 1;
-  background: linear-gradient(180deg, var(--bg-dark), var(--bg-darker));
-}
-
-.installation-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+/* ========== INSTALLATION SECTION ========== */
 
 .steps-grid {
   display: grid;
@@ -599,20 +555,26 @@ h1 {
   box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
 }
 
-.code-block {
+.code-block,
+.code-snippet {
   background: var(--bg-darker);
   border: 1px solid rgba(99, 102, 241, 0.2);
   border-radius: 12px;
   padding: 1.5rem;
-  margin-top: 1rem;
+  margin: 1.5rem 0;
   position: relative;
   overflow-x: auto;
 }
 
-.code-block code {
+.code-block code,
+.code-snippet code {
   color: var(--text-3rd);
   font-family: "Courier New", monospace;
   font-size: 0.95rem;
+}
+
+.code-snippet code {
+  display: block;
 }
 
 .copy-btn {
@@ -634,17 +596,7 @@ h1 {
   color: white;
 }
 
-/* Usage Section */
-.usage {
-  position: relative;
-  padding: 6rem 2rem;
-  z-index: 1;
-}
-
-.usage-container {
-  max-width: 1400px;
-  margin: 0 auto;
-}
+/* ========== USAGE SECTION ========== */
 
 .usage-grid {
   display: grid;
@@ -728,18 +680,7 @@ h1 {
   font-size: 1.2rem;
 }
 
-/* Wiki Section */
-.wiki {
-  position: relative;
-  padding: 6rem 2rem;
-  z-index: 1;
-  background: linear-gradient(180deg, var(--bg-dark), var(--bg-darker));
-}
-
-.wiki-container {
-  max-width: 1400px;
-  margin: 0 auto;
-}
+/* ========== WIKI SECTION ========== */
 
 .wiki-grid {
   display: grid;
@@ -823,7 +764,8 @@ h1 {
   gap: 0.5rem;
 }
 
-/* Footer */
+/* ========== FOOTER ========== */
+
 footer {
   position: relative;
   padding: 4rem 2rem 2rem;
@@ -841,10 +783,6 @@ footer {
 .footer-logo {
   font-size: 2rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   margin-bottom: 1rem;
 }
 
@@ -871,11 +809,56 @@ footer {
   font-size: 0.9rem;
 }
 
+/* ========================================== */
+/* RESPONSIVE - CONSOLIDATED MEDIA QUERIES   */
+/* ========================================== */
+
 @media (max-width: 768px) {
-  .usage-grid {
-    grid-template-columns: 1fr;
+  .nav-links {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 70%;
+    height: calc(100vh - 70px);
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    padding: 2rem;
+    transition: right 0.4s;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
   }
 
+  .nav-links.active {
+    right: 0;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .features-grid,
+  .usage-grid,
   .wiki-grid {
     grid-template-columns: 1fr;
   }
@@ -894,9 +877,404 @@ footer {
     max-width: 200px;
   }
 
+  /* Consolidated section padding */
   .installation,
   .usage,
   .wiki {
     padding: 4rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    padding: 1rem;
+  }
+
+  .hero {
+    padding: 6rem 1rem 2rem;
+  }
+
+  .features {
+    padding: 4rem 1rem;
+  }
+}
+
+.content-page {
+  position: relative;
+  padding: 8rem 2rem 4rem;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+.content-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.page-header h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.page-header p {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.video-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  background: rgba(236, 72, 153, 0.1);
+  border: 1px solid rgba(236, 72, 153, 0.3);
+  border-radius: 50px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: all 0.3s;
+}
+
+.video-badge:hover {
+  background: rgba(236, 72, 153, 0.2);
+  transform: translateY(-2px);
+}
+
+.content-section {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 3rem;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.8s ease-out;
+  animation-fill-mode: both;
+}
+
+.content-section:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.content-section:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.content-section:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.content-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.content-section h3 {
+  font-size: 1.5rem;
+  margin: 2rem 0 1rem;
+  color: var(--primary);
+}
+
+.content-section h4 {
+  font-size: 1.2rem;
+  margin: 1.5rem 0 0.8rem;
+  color: var(--text);
+}
+
+.content-section p {
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.feature-list {
+  list-style: none;
+  margin: 1.5rem 0;
+}
+
+.feature-list li {
+  padding: 1rem 0;
+  padding-left: 2.5rem;
+  position: relative;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.feature-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--text);
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.steps-list {
+  counter-reset: step-counter;
+  list-style: none;
+  margin: 2rem 0;
+}
+
+.steps-list li {
+  counter-increment: step-counter;
+  padding: 1.5rem;
+  padding-left: 4rem;
+  position: relative;
+  background: rgba(99, 102, 241, 0.05);
+  border-left: 3px solid var(--primary);
+  margin-bottom: 1rem;
+  border-radius: 10px;
+}
+
+.steps-list li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 35px;
+  height: 35px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.note-box {
+  background: rgba(236, 72, 153, 0.1);
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+}
+
+.note-box strong {
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.image-container {
+  margin: 2rem 0;
+  text-align: center;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.image-container img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.command-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.command-card {
+  background: rgba(99, 102, 241, 0.05);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+}
+
+.command-card:hover {
+  background: rgba(99, 102, 241, 0.1);
+  transform: translateY(-3px);
+}
+
+.command-card h5 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.command-card code {
+  color: var(--text-3rd);
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+}
+
+/* ========== TABLE WRAPPER ========== */
+
+.table-wrapper {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ========== CONSOLIDATED TABLE STYLES ========== */
+/* Shared by .benchmark-table and .command-table */
+
+.benchmark-table,
+.command-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.benchmark-table thead,
+.command-table thead {
+  background: rgba(99, 102, 241, 0.1);
+  border-bottom: 2px solid var(--primary);
+}
+
+.benchmark-table th,
+.command-table th {
+  padding: 1rem;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.benchmark-table th {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.benchmark-table th:first-child,
+.command-table th {
+  text-align: left;
+}
+
+.benchmark-table tbody tr,
+.command-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s;
+}
+
+.benchmark-table tbody tr:hover,
+.command-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.benchmark-table tbody tr:last-child,
+.command-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.benchmark-table td,
+.command-table td {
+  padding: 0.8rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.benchmark-table td {
+  text-align: center;
+}
+
+.benchmark-table td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.command-table td {
+  vertical-align: top;
+}
+
+.command-table td:first-child {
+  font-weight: 600;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.command-table code {
+  color: var(--text-3rd);
+  font-family: "Courier New", monospace;
+  font-size: 0.85rem;
+  display: inline-block;
+  word-break: break-all;
+}
+
+/* Highlight Styles for tables */
+.highlight-best {
+  color: var(--accent) !important;
+  font-weight: 600;
+  background: rgba(236, 72, 153, 0.1);
+}
+
+.highlight-error {
+  color: #ff6b6b !important;
+  font-style: italic;
+}
+
+/* ========================================== */
+/* RESPONSIVE - FILE 2 MEDIA QUERIES         */
+/* ========================================== */
+
+@media (max-width: 768px) {
+  .content-page {
+    padding: 6rem 1rem 2rem;
+  }
+
+  .content-section {
+    padding: 1.5rem;
+  }
+
+  .steps-list li {
+    padding-left: 3rem;
+  }
+
+  .command-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Consolidated table styles */
+  .benchmark-table th,
+  .benchmark-table td,
+  .command-table th,
+  .command-table td {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .command-table code {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .benchmark-table th,
+  .benchmark-table td {
+    padding: 0.5rem 0.3rem;
+    font-size: 0.8rem;
+  }
+
+  .command-table {
+    font-size: 0.8rem;
+  }
+
+  .command-table th,
+  .command-table td {
+    padding: 0.5rem 0.3rem;
+  }
+
+  .command-table code {
+    font-size: 0.7rem;
   }
 }
