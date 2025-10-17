@@ -126,7 +126,7 @@
   content: "→";
   position: absolute;
   left: 0;
-  color: var(--primary);
+  color: var(--text);
   font-weight: bold;
   font-size: 1.5rem;
 }
@@ -270,5 +270,172 @@
 
   .command-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Styles for Hardware Acceleration Page */
+
+.table-wrapper {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Benchmark Tables */
+.benchmark-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.benchmark-table thead {
+  background: rgba(99, 102, 241, 0.1);
+  border-bottom: 2px solid var(--primary);
+}
+
+.benchmark-table th {
+  padding: 1rem;
+  text-align: center;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.benchmark-table th:first-child {
+  text-align: left;
+}
+
+.benchmark-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s;
+}
+
+.benchmark-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.benchmark-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.benchmark-table td {
+  padding: 0.8rem 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.benchmark-table td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Highlight Styles */
+.highlight-best {
+  color: var(--accent) !important;
+  font-weight: 600;
+  background: rgba(236, 72, 153, 0.1);
+}
+
+.highlight-error {
+  color: #ff6b6b !important;
+  font-style: italic;
+}
+
+/* Command Tables */
+.command-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.command-table thead {
+  background: rgba(99, 102, 241, 0.1);
+  border-bottom: 2px solid var(--primary);
+}
+
+.command-table th {
+  padding: 1rem;
+  text-align: left;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.command-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s;
+}
+
+.command-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.command-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.command-table td {
+  padding: 0.8rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  vertical-align: top;
+}
+
+.command-table td:first-child {
+  font-weight: 600;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.command-table code {
+  color: var(--text-3rd);
+  font-family: "Courier New", monospace;
+  font-size: 0.85rem;
+  display: inline-block;
+  word-break: break-all;
+}
+
+/* Responsive Tables */
+@media (max-width: 768px) {
+  .benchmark-table th,
+  .benchmark-table td {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .command-table th,
+  .command-table td {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .command-table code {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .benchmark-table th,
+  .benchmark-table td {
+    padding: 0.5rem 0.3rem;
+    font-size: 0.8rem;
+  }
+
+  .command-table {
+    font-size: 0.8rem;
+  }
+
+  .command-table th,
+  .command-table td {
+    padding: 0.5rem 0.3rem;
+  }
+
+  .command-table code {
+    font-size: 0.7rem;
   }
 }

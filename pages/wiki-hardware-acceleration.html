@@ -16,7 +16,9 @@
 
     <header>
       <nav>
-        <div class="logo">TERMUX DESKTOP</div>
+        <div class="logo">
+          <a href="index.html"> TERMUX DESKTOP </a>
+        </div>
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html">Home</a></li>
           <li><a href="index.html#features">Features</a></li>
@@ -106,7 +108,7 @@
             <h2>💻 Using Hardware Acceleration in Proot Distro</h2>
             <h3>Method 1: Terminal Commands (<code>pdrun</code>)</h3>
             <div class="note-box">
-              <strong>NOTE:</strong> Always run <code>pdrun</code> from Termux’s
+              <strong>NOTE:</strong> Always run <code>pdrun</code> from Termux's
               shell, never from inside a distro.
             </div>
             <ol class="steps-list">
@@ -245,191 +247,221 @@
             </div>
 
             <h3>GLMark2 Scores (Proot Distro)</h3>
-            <table>
-              <tr>
-                <th>Run</th>
-                <th>LLVMPIPE</th>
-                <th>VIRGL</th>
-                <th>VIRGL ZINK</th>
-                <th>TURNIP</th>
-                <th>ZINK</th>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>93</td>
-                <td>70</td>
-                <td>66</td>
-                <td>198</td>
-                <td>Error</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>93</td>
-                <td>77</td>
-                <td>66</td>
-                <td>198</td>
-                <td>Error</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>72</td>
-                <td>70</td>
-                <td>71</td>
-                <td>198</td>
-                <td>Error</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>94</td>
-                <td>76</td>
-                <td>66</td>
-                <td>197</td>
-                <td>Error</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>93</td>
-                <td>75</td>
-                <td>67</td>
-                <td>198</td>
-                <td>Error</td>
-              </tr>
-            </table>
+            <div class="table-wrapper">
+              <table class="benchmark-table">
+                <thead>
+                  <tr>
+                    <th>Run</th>
+                    <th>LLVMPIPE</th>
+                    <th>VIRGL</th>
+                    <th>VIRGL ZINK</th>
+                    <th>TURNIP</th>
+                    <th>ZINK</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>93</td>
+                    <td>70</td>
+                    <td>66</td>
+                    <td class="highlight-best">198</td>
+                    <td class="highlight-error">Error</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>93</td>
+                    <td>77</td>
+                    <td>66</td>
+                    <td class="highlight-best">198</td>
+                    <td class="highlight-error">Error</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>72</td>
+                    <td>70</td>
+                    <td>71</td>
+                    <td class="highlight-best">198</td>
+                    <td class="highlight-error">Error</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>94</td>
+                    <td>76</td>
+                    <td>66</td>
+                    <td class="highlight-best">197</td>
+                    <td class="highlight-error">Error</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>93</td>
+                    <td>75</td>
+                    <td>67</td>
+                    <td class="highlight-best">198</td>
+                    <td class="highlight-error">Error</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <h4>Commands Used</h4>
-            <table>
-              <tr>
-                <th>Driver</th>
-                <th>Command</th>
-              </tr>
-              <tr>
-                <td>LLVMPIPE</td>
-                <td><code>glmark2</code></td>
-              </tr>
-              <tr>
-                <td>VIRGL</td>
-                <td>
-                  <code
-                    >GALLIUM_DRIVER=virpipe MESA_GL_VERSION_OVERRIDE=4.0
-                    glmark2</code
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>VIRGL ZINK</td>
-                <td>
-                  <code
-                    >GALLIUM_DRIVER=virpipe MESA_GL_VERSION_OVERRIDE=4.0
-                    glmark2</code
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>TURNIP</td>
-                <td>
-                  <code
-                    >MESA_LOADER_DRIVER_OVERRIDE=zink TU_DEBUG=noconform
-                    glmark2</code
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>ZINK</td>
-                <td>
-                  <code
-                    >GALLIUM_DRIVER=zink MESA_GL_VERSION_OVERRIDE=4.0
-                    glmark2</code
-                  >
-                </td>
-              </tr>
-            </table>
+            <div class="table-wrapper">
+              <table class="command-table">
+                <thead>
+                  <tr>
+                    <th>Driver</th>
+                    <th>Command</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>LLVMPIPE</td>
+                    <td><code>glmark2</code></td>
+                  </tr>
+                  <tr>
+                    <td>VIRGL</td>
+                    <td>
+                      <code
+                        >GALLIUM_DRIVER=virpipe MESA_GL_VERSION_OVERRIDE=4.0
+                        glmark2</code
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>VIRGL ZINK</td>
+                    <td>
+                      <code
+                        >GALLIUM_DRIVER=virpipe MESA_GL_VERSION_OVERRIDE=4.0
+                        glmark2</code
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>TURNIP</td>
+                    <td>
+                      <code
+                        >MESA_LOADER_DRIVER_OVERRIDE=zink TU_DEBUG=noconform
+                        glmark2</code
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>ZINK</td>
+                    <td>
+                      <code
+                        >GALLIUM_DRIVER=zink MESA_GL_VERSION_OVERRIDE=4.0
+                        glmark2</code
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <h3>GLMark2 Scores (Termux)</h3>
-            <table>
-              <tr>
-                <th>Run</th>
-                <th>LLVMPIPE</th>
-                <th>VIRGL</th>
-                <th>VIRGL ZINK</th>
-                <th>ZINK</th>
-                <th>TURNIP</th>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>69</td>
-                <td>Error</td>
-                <td>92</td>
-                <td>121</td>
-                <td>N/A</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>70</td>
-                <td>Error</td>
-                <td>92</td>
-                <td>122</td>
-                <td>N/A</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>69</td>
-                <td>Error</td>
-                <td>93</td>
-                <td>121</td>
-                <td>N/A</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>69</td>
-                <td>Error</td>
-                <td>93</td>
-                <td>124</td>
-                <td>N/A</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>69</td>
-                <td>Error</td>
-                <td>93</td>
-                <td>123</td>
-                <td>N/A</td>
-              </tr>
-            </table>
+            <div class="table-wrapper">
+              <table class="benchmark-table">
+                <thead>
+                  <tr>
+                    <th>Run</th>
+                    <th>LLVMPIPE</th>
+                    <th>VIRGL</th>
+                    <th>VIRGL ZINK</th>
+                    <th>ZINK</th>
+                    <th>TURNIP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>69</td>
+                    <td class="highlight-error">Error</td>
+                    <td>92</td>
+                    <td class="highlight-best">121</td>
+                    <td>N/A</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>70</td>
+                    <td class="highlight-error">Error</td>
+                    <td>92</td>
+                    <td class="highlight-best">122</td>
+                    <td>N/A</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>69</td>
+                    <td class="highlight-error">Error</td>
+                    <td>93</td>
+                    <td class="highlight-best">121</td>
+                    <td>N/A</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>69</td>
+                    <td class="highlight-error">Error</td>
+                    <td>93</td>
+                    <td class="highlight-best">124</td>
+                    <td>N/A</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>69</td>
+                    <td class="highlight-error">Error</td>
+                    <td>93</td>
+                    <td class="highlight-best">123</td>
+                    <td>N/A</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <h3>Firefox Aquarium WebGL Benchmark</h3>
             <p><strong>Proot Distro Results (Firefox-ESR):</strong></p>
-            <table>
-              <tr>
-                <th>LLVMPIPE</th>
-                <th>VIRGL</th>
-                <th>VIRGL ZINK</th>
-                <th>TURNIP</th>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>20</td>
-                <td>17</td>
-                <td>Web page crash</td>
-              </tr>
-            </table>
+            <div class="table-wrapper">
+              <table class="benchmark-table">
+                <thead>
+                  <tr>
+                    <th>LLVMPIPE</th>
+                    <th>VIRGL</th>
+                    <th>VIRGL ZINK</th>
+                    <th>TURNIP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>4</td>
+                    <td class="highlight-best">20</td>
+                    <td>17</td>
+                    <td class="highlight-error">Web page crash</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <p><strong>Termux Results (Firefox-ESR):</strong></p>
-            <table>
-              <tr>
-                <th>LLVMPIPE</th>
-                <th>VIRGL</th>
-                <th>VIRGL ZINK</th>
-                <th>ZINK</th>
-                <th>TURNIP</th>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Error</td>
-                <td>24</td>
-                <td>40</td>
-                <td>N/A</td>
-              </tr>
-            </table>
+            <div class="table-wrapper">
+              <table class="benchmark-table">
+                <thead>
+                  <tr>
+                    <th>LLVMPIPE</th>
+                    <th>VIRGL</th>
+                    <th>VIRGL ZINK</th>
+                    <th>ZINK</th>
+                    <th>TURNIP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2</td>
+                    <td class="highlight-error">Error</td>
+                    <td>24</td>
+                    <td class="highlight-best">40</td>
+                    <td>N/A</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <div class="image-container">
               <img
