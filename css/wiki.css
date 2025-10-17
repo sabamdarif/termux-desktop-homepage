@@ -400,7 +400,6 @@
   word-break: break-all;
 }
 
-/* Responsive Tables */
 @media (max-width: 768px) {
   .benchmark-table th,
   .benchmark-table td {
