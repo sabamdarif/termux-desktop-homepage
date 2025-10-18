@@ -614,6 +614,7 @@ h1 {
   transition: all 0.4s;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
 .usage-card::after {
