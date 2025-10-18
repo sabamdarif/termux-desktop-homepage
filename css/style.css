@@ -388,6 +388,7 @@ h1 {
   overflow: hidden;
   transition: all 0.4s;
   cursor: pointer;
+  backdrop-filter: blur(10px);
 }
 
 .feature-card::before {
